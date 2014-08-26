@@ -4,18 +4,25 @@ dictionary = ["below","down","go","going","horn","how","howdy","it","i","low",
 
 
 def substrings string, dictionary
+	matched_words = []
+
+	if string.split(" ").size > 1
+		
 	
-	p dictionary.select{ |i| i==string }
+	else
+		matched_words = dictionary.select{ |i| i.match(/.*#{string}.*/) || string.match(/.*#{i}.*/) }
+	end
+	
 
+
+	substrings_hash = {}
+	matched_words.each do |key|
+		substrings_hash[key] = dictionary.index(key)
+	end
+	substrings_hash
 end
 
-def word_match big_word, small_word
-	big_word_array = big_word.sc(//)
-	p big_word_array
-
-end
 
 
 
-substrings("below", dictionary)
-word_match "below", "low"
+p substrings("below", dictionary)
